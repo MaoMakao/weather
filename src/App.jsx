@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import SearchBar from "./components/searchBar";
+import SearchBar from "./components/SearchBar";
 import axios from "axios";
 import HourForecast from "./components/HourForecast";
 
 class App extends React.Component {
-  state = { forecast: [], q: "" };
+  state = { forecast: [], location: "" };
 
   getData = async (location) => {
     try {

@@ -6,12 +6,14 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 
 class HourForecast extends React.Component {
-  state = { day: 0, data: "" };
-
+  constructor(props) {
+    super(props);
+    this.state = { day: 0, date: "" };
+  }
   getStringDate = (date) => {
     return new Date(date).toLocalString("en", {
       month: "long",
-      week: "long",
+      weekday: "long",
       day: "numeric",
     });
   };
@@ -49,7 +51,7 @@ class HourForecast extends React.Component {
             variant="h4"
             component="div"
           >
-            {this.response(this.props.forecast[this.state.day].date)}
+            {this.getStringDate(this.props.forecast[this.state.day].date)}
           </Typography>
           <Fab onClick={this.nextDay} sx={{ mr: "20px" }} size="medium">
             <KeyboardDoubleArrowRightIcon />

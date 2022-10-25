@@ -11,7 +11,7 @@ class HourForecast extends React.Component {
     this.state = { day: 0, date: "" };
   }
   getStringDate = (date) => {
-    return new Date(date).toLocalString("en", {
+    return new Date(date).toLocaleString("en", {
       month: "long",
       weekday: "long",
       day: "numeric",
@@ -67,6 +67,9 @@ class HourForecast extends React.Component {
           {this.props.forecast[this.state.day].hour.map((hour, i) => {
             return (
               <div key={i}>
+                <Typography sx={{ mt: "10px", variant: "subtitle1" }}>
+                  {hour.time.slice(-5)}
+                </Typography>
                 <Box
                   sx={{
                     display: "flex",
@@ -86,6 +89,9 @@ class HourForecast extends React.Component {
                     max={this.props.forecast[this.state.day].day.maxtemp_c + 20}
                   />
                 </Box>
+                <Typography sx={{ mt: "10px", variant: "subtitle2" }}>
+                  {hour.temp_c}C
+                </Typography>
               </div>
             );
           })}

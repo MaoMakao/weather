@@ -3,6 +3,7 @@ import "./App.css";
 import SearchBar from "./components/SearchBar";
 import axios from "axios";
 import HourForecast from "./components/HourForecast";
+import RenderWeatherContent from "./components/RenderWetherCard";
 
 class App extends React.Component {
   state = { forecast: [], location: "" };
@@ -24,7 +25,6 @@ class App extends React.Component {
         location: `${res.data.location.country}, ${res.data.location.region}, ${res.data.location.name}`,
       });
 
-      console.log(res);
       return res;
     } catch (error) {
       console.log(error);
@@ -38,6 +38,10 @@ class App extends React.Component {
         {!!this.state.forecast.length && (
           <HourForecast forecast={this.state.forecast} />
         )}
+        <RenderWeatherContent
+          location={this.state.location}
+          forecast={this.state.forecast}
+        />
       </div>
     );
   }

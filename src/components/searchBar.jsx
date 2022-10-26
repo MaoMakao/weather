@@ -1,13 +1,24 @@
 import React from "react";
-import { TextField, Button } from "@mui/material";
+import { TextField, Fab } from "@mui/material";
 import { Container } from "@mui/system";
-
+import SearchIcon from "@mui/icons-material/Search";
+import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 
 class SearchBar extends React.Component {
-  
   constructor(props) {
-    super(props)
-     this.state = { input: "" };
+    super(props);
+    this.state = { input: "" };
+  }
+  ChengeSearch() {
+    if (this.state.input.length) {
+      this.props.getData(this.state.input);
+    } else {
+      window.navigator.geolocation.getCurrentPosition((position) => {
+        this.props.getData(
+          `${position.coords.latitude},${position.coords.longitude}`
+        );
+      });
+    }
   }
 
   render() {
@@ -27,12 +38,9 @@ class SearchBar extends React.Component {
               fullWidth
               size="small"
             />
-            <Button
-              onClick={() => this.props.getData(this.state.input)}
-              variant="contained"
-            >
-              Hui
-            </Button>
+            <Fab onClick={this.ChengeSearch()}>
+              {(this.state.input.length) ? <SearchIcon/> : <TravelExploreIcon/>}
+            </Fab>
           </form>
         </Container>
       </div>

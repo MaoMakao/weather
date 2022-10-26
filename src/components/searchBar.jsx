@@ -38,7 +38,7 @@ class SearchBar extends React.Component {
               fullWidth
               size="small"
             />
-            <Fab onClick={this.ChengeSearch()}>
+            <Fab onClick={() => this.ChengeSearch()}>
               {(this.state.input.length) ? <SearchIcon/> : <TravelExploreIcon/>}
             </Fab>
           </form>
